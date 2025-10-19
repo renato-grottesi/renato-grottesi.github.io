@@ -57,30 +57,16 @@
 
         const pattern = HARDCODED_STRUDEL_CODE;
         scheduler.setPattern(pattern);
-        
 
-        
+        function startStrudelMusic() {
+            try {
+                scheduler.setPattern(HARDCODED_STRUDEL_CODE);
+                scheduler.start();
+            } catch (error) {
+                console.error("Error playing Strudel song:", error);
+            }
+        }
         document.getElementById('play-music').addEventListener("click", () => scheduler.start());
-//        const playMusic = document.getElementById('play-music').addEventListener("click", () => scheduler.start());
-
-//        const { scheduler } = repl({
-//            defaultOutput: webaudioOutput,
-//        });
-
-//        function startStrudelMusic() {
-//            try {
-//                scheduler.setPattern(HARDCODED_STRUDEL_CODE);
-//                scheduler.start();
-//            } catch (error) {
-//                console.error("Error playing Strudel song:", error);
-//            }
-//        }
-
-//        playMusic.addEventListener('click', () => {
-//            initAudioOnFirstClick(() => {
-//                startStrudelMusic();
-//            })();
-//        }, { once: true });
     </script>
     
     <div class="outerContainer">
