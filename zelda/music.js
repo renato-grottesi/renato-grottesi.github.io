@@ -11,18 +11,29 @@ const ctx = getAudioContext();
 
 const { scheduler } = repl({
   defaultOutput: webaudioOutput,
-  getTime: () => ctx.currentTime
+  getTime: () => ctx.currentTime,
+  transpiler,
 });
 
 const pattern = note("c3", ["eb3", "g3"]).s("sawtooth");
 
 scheduler.setPattern(pattern);
-document
-  .getElementById("play-music")
-  .addEventListener("click", () => scheduler.start());
-document
-  .getElementById("stop")
-  .addEventListener("click", () => scheduler.stop());
+
+function startStrudelMusic() {
+            try {
+                if (scheduler.isPlaying) {
+                    scheduler.stop();
+                } else {
+                    //scheduler.start();
+                    scheduler(
+    `sine.add(saw.slow(4)).range(0,7).segment(8).scale('G0 minor').note().s("sawtooth")`
+  );
+
+                }
+            } catch (error) {
+                console.error("Error playing Strudel song:", error);
+            }
+}
         
 const HARDCODED_STRUDEL_CODE = `
         setcpm(40)
