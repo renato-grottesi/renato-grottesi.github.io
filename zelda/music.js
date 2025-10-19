@@ -12,12 +12,11 @@ const ctx = getAudioContext();
 const { scheduler } = repl({
   defaultOutput: webaudioOutput,
   getTime: () => ctx.currentTime,
-  transpiler,
 });
 
-const pattern = note("c3", ["eb3", "g3"]).s("sawtooth");
+//const pattern = note("c3", ["eb3", "g3"]).s("sawtooth");
 
-scheduler.setPattern(pattern);
+//scheduler.setPattern(pattern);
 
 function startStrudelMusic() {
             try {
