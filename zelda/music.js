@@ -1,39 +1,5 @@
-import { repl, controls } from "@strudel/core";
-import {
-  initAudioOnFirstClick,
-  getAudioContext,
-  webaudioOutput
-} from "@strudel/webaudio";
-const { note } = controls;
+// Find the right URLs for the importmap from https://www.jsdelivr.com/?query=strudel
 
-initAudioOnFirstClick();
-const ctx = getAudioContext();
-
-const { scheduler } = repl({
-  defaultOutput: webaudioOutput,
-  getTime: () => ctx.currentTime,
-});
-
-//const pattern = note("c3", ["eb3", "g3"]).s("sawtooth");
-
-//scheduler.setPattern(pattern);
-
-function startStrudelMusic() {
-            try {
-                if (scheduler.isPlaying) {
-                    scheduler.stop();
-                } else {
-                    //scheduler.start();
-                    scheduler(
-    `sine.add(saw.slow(4)).range(0,7).segment(8).scale('G0 minor').note().s("sawtooth")`
-  );
-
-                }
-            } catch (error) {
-                console.error("Error playing Strudel song:", error);
-            }
-}
-        
 const HARDCODED_STRUDEL_CODE = `
         setcpm(40)
         // drums pattern
@@ -54,3 +20,37 @@ const HARDCODED_STRUDEL_CODE = `
           .scale("[F4:major G4:major C4:major A4:minor]/2")
           .sound("piano")
         `; 
+
+import { repl, controls } from "@strudel/core";
+import {
+  initAudioOnFirstClick,
+  getAudioContext,
+  webaudioOutput
+} from "@strudel/webaudio";
+const { note } = controls;
+
+initAudioOnFirstClick();
+const ctx = getAudioContext();
+
+const { scheduler } = repl({
+  defaultOutput: webaudioOutput,
+  getTime: () => ctx.currentTime,
+});
+
+//const pattern = note("c3", ["eb3", "g3"]).s("sawtooth");
+//scheduler.setPattern(pattern);
+//scheduler.setPattern(HARDCODED_STRUDEL_CODE);
+
+function startStrudelMusic() {
+            try {
+                if (scheduler.isPlaying) {
+                    scheduler.stop();
+                } else {
+                    //scheduler.start();
+                    scheduler(`sine.add(saw.slow(4)).range(0,7).segment(8).scale('G0 minor').note().s("sawtooth")`);
+                }
+            } catch (error) {
+                console.error("Error playing Strudel song:", error);
+            }
+}
+
