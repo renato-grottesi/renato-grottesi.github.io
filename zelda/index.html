@@ -8,6 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "@strudel/core": "https://cdn.jsdelivr.net/npm/@strudel/core@1.2.4/+esm",
+            "@strudel/repl": "https://cdn.jsdelivr.net/npm/@strudel/repl@1.2.6/dist/index.min.js",
+            "@strudel/webaudio": "https://cdn.jsdelivr.net/npm/@strudel/webaudio@1.2.5/+esm"
+        }
+    }
+    </script>
+    
 </head>
 
 <body>
@@ -33,18 +44,9 @@
           .sound("piano")
         `; 
 
-        import { repl } from "https://cdn.jsdelivr.net/npm/@strudel/repl@1.2.6/dist/index.min.js";
-        import { initAudioOnFirstClick, webaudioOutput } from "https://cdn.jsdelivr.net/npm/@strudel/webaudio@1.2.5/+esm";
-
-        //import { repl } from "https://cdn.jsdelivr.net/npm/@strudel/core@1.2.5/dist/core.js";
-        //import { initAudioOnFirstClick, webaudioOutput } from "https://cdn.jsdelivr.net/npm/@strudel/webaudio@1.2.5/dist/webaudio.js";
-        // 2. Import the necessary Strudel modules from CDN
-        //import { repl } from "https://unpkg.com/@strudel/core@1.2.5/dist/core.mjs";
-        //import { initAudioOnFirstClick, webaudioOutput } from "https://unpkg.com/@strudel/webaudio@1.2.5/dist/webaudio.mjs";
-        //import { repl } from "https://cdn.jsdelivr.net/npm/@strudel/core@1.2.5/dist/core.min.js";
-        //import { initAudioOnFirstClick, webaudioOutput } from "https://cdn.jsdelivr.net/npm/@strudel/webaudio@1.2.5/dist/webaudio.min.js";
-        //import { repl } from "https://cdn.jsdelivr.net/npm/@strudel/core@1.2.5/+esm";
-        //import { initAudioOnFirstClick, webaudioOutput } from "https://cdn.jsdelivr.net/npm/@strudel/webaudio@1.2.5";
+        // Find the right URLs from https://www.jsdelivr.com/?query=strudel
+        import { repl, note } from "@strudel/core";
+        import { initAudioOnFirstClick, getAudioContext, webaudioOutput } from "@strudel/webaudio";
 
         const playMusic = document.getElementById('play-music');
 
