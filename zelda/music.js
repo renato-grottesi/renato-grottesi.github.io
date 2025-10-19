@@ -1,9 +1,9 @@
-import { repl, controls } from "@strudel.cycles/core";
+import { repl, controls } from "@strudel/core";
 import {
   initAudioOnFirstClick,
   getAudioContext,
   webaudioOutput
-} from "@strudel.cycles/webaudio";
+} from "@strudel/webaudio";
 const { note } = controls;
 
 initAudioOnFirstClick();
