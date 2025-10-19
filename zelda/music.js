@@ -18,7 +18,7 @@ const pattern = note("c3", ["eb3", "g3"]).s("sawtooth");
 
 scheduler.setPattern(pattern);
 document
-  .getElementById("start")
+  .getElementById("play-music")
   .addEventListener("click", () => scheduler.start());
 document
   .getElementById("stop")
