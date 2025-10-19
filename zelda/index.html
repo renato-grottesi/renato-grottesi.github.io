@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <button id="startButton">🎵 Play Song</button>
     <script type="module">
         // 1. HARDCODED STRUDEL SONG STRING
         const HARDCODED_STRUDEL_CODE = `
@@ -45,7 +44,7 @@
         import { initAudioOnFirstClick, webaudioOutput } from "https://cdn.jsdelivr.net/npm/@strudel/webaudio@0.10.2/dist/webaudio.js";
 
         // Get the start button element
-        const startButton = document.getElementById('startButton');
+        const playMusic = document.getElementById('play-music');
 
         // 3. Initialize the Strudel environment
         const { scheduler } = repl({
@@ -57,23 +56,17 @@
             try {
                 // Set the hardcoded pattern in the Strudel scheduler
                 scheduler.setPattern(HARDCODED_STRUDEL_CODE);
-
                 // Start the playback
                 scheduler.start();
-                
-                // Update button state
-                startButton.textContent = '🔊 Playing';
-                startButton.disabled = true;
-
             } catch (error) {
                 console.error("Error playing Strudel song:", error);
-                startButton.textContent = 'Error playing music.';
-                startButton.disabled = true;
+                playMusic.textContent = 'Error playing music.';
+                playMusic.disabled = true;
             }
         }
 
         // 4. Attach the function to the button click for guaranteed playback
-        startButton.addEventListener('click', () => {
+        playMusic.addEventListener('click', () => {
             // The first click initializes the Web Audio API and then runs your function
             initAudioOnFirstClick(() => {
                 startStrudelMusic();
@@ -89,6 +82,7 @@
           <a id="save" title="Save progress">save</a>
           <a id="reload" title="Reload from save point">load</a>
           <a id="theme-switch" title="Switch theme">theme</a>
+          <a id="play-music" title="Play music">music</a>
         </div>
 
         <div id="story" class="container">
